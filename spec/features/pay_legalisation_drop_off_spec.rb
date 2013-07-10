@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe "paying to get a document legalised using the drop-off service" do
   it "renders the content and form" do
-    visit "/pay-legalisation-drop-off/start"
+    visit "http://pay-legalisation-drop-off.example.com/"
 
     within(:css, "header.page-header") do
       page.should have_content("Pay to legalise documents using the drop-off service")
@@ -25,7 +25,7 @@ describe "paying to get a document legalised using the drop-off service" do
 
   context "given correct data" do
     before do
-      visit "/pay-legalisation-drop-off/start"
+      visit "http://pay-legalisation-drop-off.example.com/"
 
       within(:css, "form") do
         fill_in "transaction_document_count", :with => "5"
@@ -49,7 +49,7 @@ describe "paying to get a document legalised using the drop-off service" do
         page.should have_selector("input[name='AMOUNT'][value='37500']")
         page.should have_selector("input[name='CURRENCY'][value='GBP']")
         page.should have_selector("input[name='LANGUAGE'][value='en_GB']")
-        page.should have_selector("input[name='ACCEPTURL'][value='http://www.dev.gov.uk/pay-legalisation-drop-off/done']")
+        page.should have_selector("input[name='ACCEPTURL'][value='http://pay-legalisation-drop-off.example.com/done']")
 
         page.should have_button("Pay")
       end
@@ -57,7 +57,7 @@ describe "paying to get a document legalised using the drop-off service" do
   end
 
   it "returns an error if document count is not an integer" do
-    visit "/pay-legalisation-drop-off/start"
+    visit "http://pay-legalisation-drop-off.example.com/"
 
     fill_in "transaction_document_count", :with => "definitely not a number"
     click_on "Calculate total"
