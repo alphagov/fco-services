@@ -2,37 +2,17 @@ require 'spec_helper'
 
 describe EpdqTransactionsController do
 
-  describe "redirection to start page" do
-    it "returns 404 status if slug is empty" do
-      get :show, :slug => ""
-      response.should be_not_found
-    end
-
-    it "returns 404 status if slug is not found" do
-      get :show, :slug => "pay-for-all-the-things"
-      response.should be_not_found
-    end
-
-    it "redirects to the start page for a valid slug" do
-      get :show, :slug => "pay-foreign-marriage-certificates"
-      response.should redirect_to("/pay-foreign-marriage-certificates/start")
-    end
-  end
-
   describe "start pages" do
-    it "returns 404 status if slug is empty" do
-      get :start, :slug => ""
+    it "returns 404 status if slug doesn't match a transaction" do
+      request.host = "pay-bear-tax.example.com"
+      get :start
       response.should be_not_found
     end
 
-    it "returns 404 status if slug is not found" do
-      get :start, :slug => "pay-for-all-the-things"
-      response.should be_not_found
-    end
-
-    context "given a valid transaction as the slug" do
+    context "given a valid transaction in the hostname" do
       before do
-        get :start, :slug => "pay-foreign-marriage-certificates"
+        request.host = "pay-foreign-marriage-certificates.example.com"
+        get :start
       end
 
       it "sets the correct expiry headers" do
@@ -58,23 +38,32 @@ describe EpdqTransactionsController do
         assigns(:journey_description).should == "pay-foreign-marriage-certificates:start"
       end
     end
+
+    it "works with short domains" do
+      request.host = "pay-foreign-marriage-certificates.dev"
+      get :start
+      response.should be_success
+    end
   end
 
   describe "confirm pages" do
-    it "returns 404 status if slug is empty" do
-      post :confirm, :slug => ""
+    it "returns 404 status if slug doesn't match a transaction" do
+      request.host = "pay-bear-tax.example.com"
+      post :confirm
       response.should be_not_found
     end
 
     it "builds an epdq request with the correct account" do
+      request.host = "pay-legalisation-drop-off.example.com"
       EPDQ::Request.should_receive(:new).with(hash_including(:account => "legalisation-drop-off"))
 
-      post :confirm, :slug => "pay-legalisation-drop-off", :transaction => { :document_count => "5" }
+      post :confirm, :transaction => { :document_count => "5" }
     end
 
     context "given an invalid document count" do
       before do
-        post :confirm, :slug => "pay-legalisation-drop-off", :transaction => {
+        request.host = "pay-legalisation-drop-off.example.com"
+        post :confirm, :transaction => {
           :document_count => "test",
           :postage => "yes",
         }
@@ -92,7 +81,8 @@ describe EpdqTransactionsController do
 
     context "given a zero document count" do
       before do
-        post :confirm, :slug => "pay-legalisation-drop-off", :transaction => {
+        request.host = "pay-legalisation-drop-off.example.com"
+        post :confirm, :transaction => {
           :document_count => "0",
           :postage => "yes",
         }
@@ -111,7 +101,8 @@ describe EpdqTransactionsController do
     describe "with multiple document types" do
       context "given valid values" do
         before do
-          post :confirm, :slug => "pay-foreign-marriage-certificates", :transaction => {
+          request.host = "pay-foreign-marriage-certificates.example.com"
+          post :confirm, :transaction => {
             :document_count => "5",
             :postage => "yes",
             :document_type => "nulla-osta"
@@ -139,7 +130,7 @@ describe EpdqTransactionsController do
         it "assigns an EPDQ request with the correct amount" do
           assigns(:epdq_request).parameters[:orderid].should_not be_blank
           assigns(:epdq_request).parameters[:amount].should == 33500
-          assigns(:epdq_request).parameters[:accepturl].should == "http://www.dev.gov.uk/pay-foreign-marriage-certificates/done"
+          assigns(:epdq_request).parameters[:accepturl].should == "http://pay-foreign-marriage-certificates.example.com/done"
         end
 
         it "assigns the journey description" do
@@ -149,7 +140,8 @@ describe EpdqTransactionsController do
 
       context "given no document type" do
         before do
-          post :confirm, :slug => "pay-foreign-marriage-certificates", :transaction => {
+          request.host = "pay-foreign-marriage-certificates.example.com"
+          post :confirm, :transaction => {
             :document_count => "5",
             :postage => "yes",
           }
@@ -170,7 +162,8 @@ describe EpdqTransactionsController do
 
       context "given an invalid document type" do
         before do
-          post :confirm, :slug => "pay-foreign-marriage-certificates", :transaction => {
+          request.host = "pay-foreign-marriage-certificates.example.com"
+          post :confirm, :transaction => {
             :document_count => "5",
             :postage => "yes",
             :document_type => "nyan"
@@ -194,7 +187,8 @@ describe EpdqTransactionsController do
     describe "with registration count" do
       context "given valid values" do
         before do
-          post :confirm, :slug => "pay-register-birth-abroad", :transaction => {
+          request.host = "pay-register-birth-abroad.example.com"
+          post :confirm, :transaction => {
             :registration_count => "5",
             :document_count => "5",
             :postage => "yes"
@@ -222,7 +216,7 @@ describe EpdqTransactionsController do
         it "assigns an EPDQ request with the correct amount" do
           assigns(:epdq_request).parameters[:orderid].should_not be_blank
           assigns(:epdq_request).parameters[:amount].should == 86000
-          assigns(:epdq_request).parameters[:accepturl].should == "http://www.dev.gov.uk/pay-register-birth-abroad/done"
+          assigns(:epdq_request).parameters[:accepturl].should == "http://pay-register-birth-abroad.example.com/done"
         end
 
         it "assigns the journey description" do
@@ -234,7 +228,8 @@ describe EpdqTransactionsController do
     describe "without multiple document types" do
       context "given valid values" do
         before do
-          post :confirm, :slug => "deposit-foreign-marriage", :transaction => {
+          request.host = "deposit-foreign-marriage.example.com"
+          post :confirm, :transaction => {
             :document_count => "3",
             :postage => "no"
           }
@@ -261,8 +256,9 @@ describe EpdqTransactionsController do
   end
 
   describe "done pages" do
-    it "returns 404 status if slug is empty" do
-      post :confirm, :slug => ""
+    it "returns 404 status if slug doesn't match a transaction" do
+      request.host = "pay-bear-tax.example.com"
+      post :confirm
       response.should be_not_found
     end
 
@@ -271,13 +267,15 @@ describe EpdqTransactionsController do
       EPDQ::Response.should_receive(:new).with(anything(), "birth-death-marriage", Transaction::PARAMPLUS_KEYS)
         .and_return(response_stub)
 
-      get :done, :slug => "deposit-foreign-marriage"
+      request.host = "deposit-foreign-marriage.example.com"
+      get :done
     end
 
     describe "for a standard transaction" do
       context "given valid parameters" do
         before do
-          get :done, :slug => "deposit-foreign-marriage",
+          request.host = "deposit-foreign-marriage.example.com"
+          get :done,
             "orderID" => "test",
             "currency" => "GBP",
             "amount" => 45,
@@ -323,7 +321,8 @@ describe EpdqTransactionsController do
 
       context "given invalid parameters" do
         before do
-          get :done, :slug => "deposit-foreign-marriage",
+          request.host = "deposit-foreign-marriage.example.com"
+          get :done,
             "orderID" => "test",
             "currency" => "GBP",
             "amount" => 45,

@@ -1,8 +1,9 @@
 FCOServices::Application.routes.draw do
-  get "/:slug" => "epdq_transactions#show"
-  get "/:slug/start" => "epdq_transactions#start", :as => :transaction
-  post "/:slug/confirm" => "epdq_transactions#confirm", :as => :transaction_confirm
-  get "/:slug/done" => "epdq_transactions#done", :as => :transaction_done
+  constraints(Transaction) do
+    get "/" => "epdq_transactions#start", :as => :transaction
+    post "/confirm" => "epdq_transactions#confirm", :format => false, :as => :transaction_confirm
+    get "/done" => "epdq_transactions#done", :format => false, :as => :transaction_done
+  end
 
   root :to => "epdq_transactions#index"
 end

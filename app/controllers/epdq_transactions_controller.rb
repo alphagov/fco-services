@@ -48,7 +48,7 @@ class EpdqTransactionsController < ApplicationController
 
 private
   def find_transaction
-    @transaction = Transaction.find(params[:slug])
+    @transaction = Transaction.find(request.subdomains(0).first)
   end
 
   def build_epdq_request(transaction, total_cost_in_gbp)
@@ -58,7 +58,7 @@ private
       :amount => (total_cost_in_gbp * 100).round,
       :currency => "GBP",
       :language => "en_GB",
-      :accepturl => base_url + "#{transaction.slug}/done",
+      :accepturl => transaction_done_url,
       :paramplus => paramplus_value,
       :tp => "#{Plek.current.asset_root}/templates/barclays_epdq.html"
     )
@@ -72,10 +72,6 @@ private
         end
       end
     end.join('&')
-  end
-
-  def base_url
-    Plek.current.website_root + "/"
   end
 
   def journey_description(step)

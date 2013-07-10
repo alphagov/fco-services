@@ -1,5 +1,4 @@
 class Transaction < OpenStruct
-  cattr_writer :file_path, :transaction_list
 
   class TransactionNotFound < StandardError; end
   class InvalidDocumentType < StandardError; end
@@ -22,12 +21,20 @@ class Transaction < OpenStruct
     end
   end
 
+  cattr_writer :file_path, :transaction_list
+
   def self.file_path
     @@file_path || Rails.root.join("lib/transactions.yml")
   end
 
   def self.transaction_list
     @@transaction_list ||= self.load_transaction_list
+  end
+
+  # To support subdomain routing (see routes.rb)
+  def self.matches?(request)
+    slug = request.subdomains(0).first
+    transaction_list.has_key?(slug)
   end
 
   private
