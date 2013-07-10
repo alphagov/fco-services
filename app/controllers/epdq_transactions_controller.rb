@@ -5,13 +5,6 @@ class EpdqTransactionsController < ApplicationController
 
   rescue_from Transaction::TransactionNotFound, :with => :error_404
 
-  def index
-  end
-
-  def show
-    redirect_to transaction_path(@transaction.slug)
-  end
-
   def start
     @journey_description = journey_description(:start)
   end
