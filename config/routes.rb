@@ -5,5 +5,5 @@ FCOServices::Application.routes.draw do
     get "/done" => "epdq_transactions#done", :format => false, :as => :transaction_done
   end
 
-  root :to => "epdq_transactions#index"
+  root :to => redirect("https://www.gov.uk/", :status => 302)
 end
