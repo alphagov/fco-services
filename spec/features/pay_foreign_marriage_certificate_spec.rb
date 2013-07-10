@@ -28,6 +28,14 @@ describe "paying for a certificate for marriage" do
 
   end
 
+  it "should redirect a GET to /confirm back to the start" do
+    visit "http://pay-foreign-marriage-certificates.example.com/confirm"
+
+    i_should_be_on "/"
+
+    page.should have_content("How many do you need?")
+  end
+
   context "given correct data" do
     before do
       visit "http://pay-foreign-marriage-certificates.example.com/"
