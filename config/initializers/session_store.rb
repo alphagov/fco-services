@@ -1,8 +1,8 @@
 # Be sure to restart your server when you modify this file.
 
-TransactionWrappers::Application.config.session_store :cookie_store, key: '_transaction_wrappers_session'
+FCOServices::Application.config.session_store :cookie_store, key: '_fco_services_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
-# TransactionWrappers::Application.config.session_store :active_record_store
+# FCOServices::Application.config.session_store :active_record_store

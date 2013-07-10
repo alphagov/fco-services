@@ -1,4 +1,4 @@
-TransactionWrappers::Application.routes.draw do
+FCOServices::Application.routes.draw do
   get "/:slug" => "epdq_transactions#show"
   get "/:slug/start" => "epdq_transactions#start", :as => :transaction
   post "/:slug/confirm" => "epdq_transactions#confirm", :as => :transaction_confirm

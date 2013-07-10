@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-TransactionWrappers::Application.load_tasks
+FCOServices::Application.load_tasks
