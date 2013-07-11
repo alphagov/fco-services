@@ -8,4 +8,5 @@ FCOServices::Application.routes.draw do
   end
 
   root :to => redirect("https://www.gov.uk/", :status => 302)
+  get "/healthcheck" => Proc.new { [200, {}, ['OK']] }, :format => false
 end
