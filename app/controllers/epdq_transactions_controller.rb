@@ -1,6 +1,6 @@
 class EpdqTransactionsController < ApplicationController
 
-  before_filter :find_transaction, :except => :index
+  before_filter :find_transaction
   before_filter :set_expiry, :only => [:start, :root_redirect]
 
   rescue_from Transaction::TransactionNotFound, :with => :error_404
