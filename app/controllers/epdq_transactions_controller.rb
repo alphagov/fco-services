@@ -1,12 +1,16 @@
 class EpdqTransactionsController < ApplicationController
 
   before_filter :find_transaction, :except => :index
-  before_filter :set_expiry, :only => :start
+  before_filter :set_expiry, :only => [:start, :root_redirect]
 
   rescue_from Transaction::TransactionNotFound, :with => :error_404
 
   def start
     @journey_description = journey_description(:start)
+  end
+
+  def root_redirect
+    redirect_to "https://www.gov.uk/#{@transaction.slug}", :status => 301
   end
 
   def confirm

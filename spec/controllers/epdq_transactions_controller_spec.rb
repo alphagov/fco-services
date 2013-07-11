@@ -46,6 +46,28 @@ describe EpdqTransactionsController do
     end
   end
 
+  describe "root redirects" do
+    it "should redirect a known slug to the www.gov.uk start page" do
+      request.host = "www.pay-legalisation-drop-off.example.com"
+      get :root_redirect
+      response.should redirect_to("https://www.gov.uk/pay-legalisation-drop-off")
+      response.status.should == 301
+    end
+
+    it "should set cache-control headers for the redirect" do
+      request.host = "www.pay-legalisation-drop-off.example.com"
+      get :root_redirect
+
+      response.headers['Cache-Control'].should == "max-age=1800, public"
+    end
+
+    it "should 404 for an unknown slug" do
+      request.host = "www.pay-bear-tax.example.com"
+      get :root_redirect
+      response.should be_not_found
+    end
+  end
+
   describe "confirm pages" do
     it "returns 404 status if slug doesn't match a transaction" do
       request.host = "www.pay-bear-tax.example.com"

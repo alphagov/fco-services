@@ -26,6 +26,13 @@ describe "Routing requests to transactions" do
       )
     end
 
+    it "should route / to the root_redirect action" do
+      expect(:get => "http://#{domain}/").to route_to(
+        :controller => "epdq_transactions",
+        :action => "root_redirect"
+      )
+    end
+
     it "should match with any length of domain" do
       prefix = "www.deposit-foreign-marriage"
       expect(:get => "http://#{prefix}.service.gov.uk/start").to route_to(:controller => "epdq_transactions", :action => "start")
