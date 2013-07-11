@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe "paying to get a document legalised by post" do
   it "renders the content and form" do
-    visit "http://pay-legalisation-post.example.com/"
+    visit "http://www.pay-legalisation-post.example.com/start"
 
     within(:css, "header.page-header") do
       page.should have_content("Pay to legalise documents by post")
@@ -28,7 +28,7 @@ describe "paying to get a document legalised by post" do
 
   context "given correct data" do
     before do
-      visit "http://pay-legalisation-post.example.com/"
+      visit "http://www.pay-legalisation-post.example.com/start"
 
       within(:css, "form") do
         fill_in "transaction_document_count", :with => "1"
@@ -53,7 +53,7 @@ describe "paying to get a document legalised by post" do
         page.should have_selector("input[name='AMOUNT'][value='5500']")
         page.should have_selector("input[name='CURRENCY'][value='GBP']")
         page.should have_selector("input[name='LANGUAGE'][value='en_GB']")
-        page.should have_selector("input[name='ACCEPTURL'][value='http://pay-legalisation-post.example.com/done']")
+        page.should have_selector("input[name='ACCEPTURL'][value='http://www.pay-legalisation-post.example.com/done']")
 
         page.should have_button("Pay")
       end
@@ -63,7 +63,7 @@ describe "paying to get a document legalised by post" do
   it "should allow selecting zero documents" do
     # Necessary when people haven't paid for the correct postage the first time round
 
-    visit "http://pay-legalisation-post.example.com/"
+    visit "http://www.pay-legalisation-post.example.com/start"
 
     within(:css, "form") do
       fill_in "transaction_document_count", :with => "0"
@@ -76,7 +76,7 @@ describe "paying to get a document legalised by post" do
   end
 
   it "displays an error and renders the form given incorrect data" do
-    visit "http://pay-legalisation-post.example.com/"
+    visit "http://www.pay-legalisation-post.example.com/start"
 
     within(:css, "form") do
       fill_in "transaction_document_count", :with => "3"
@@ -89,7 +89,7 @@ describe "paying to get a document legalised by post" do
   end
 
   it "returns an error if document count is not an integer" do
-    visit "http://pay-legalisation-post.example.com/"
+    visit "http://www.pay-legalisation-post.example.com/start"
 
     fill_in "transaction_document_count", :with => "definitely not a number"
     click_on "Calculate total"

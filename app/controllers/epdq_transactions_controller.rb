@@ -41,7 +41,7 @@ class EpdqTransactionsController < ApplicationController
 
 private
   def find_transaction
-    @transaction = Transaction.find(request.subdomains(0).first)
+    @transaction = Transaction.find(request.subdomains(0)[1])
   end
 
   def build_epdq_request(transaction, total_cost_in_gbp)

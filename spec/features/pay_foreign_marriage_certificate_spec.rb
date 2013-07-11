@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe "paying for a certificate for marriage" do
   it "renders the content and form" do
-    visit "http://pay-foreign-marriage-certificates.example.com/"
+    visit "http://www.pay-foreign-marriage-certificates.example.com/start"
 
     within(:css, "header.page-header") do
       page.should have_content("Payment for certificates to get married abroad")
@@ -29,16 +29,16 @@ describe "paying for a certificate for marriage" do
   end
 
   it "should redirect a GET to /confirm back to the start" do
-    visit "http://pay-foreign-marriage-certificates.example.com/confirm"
+    visit "http://www.pay-foreign-marriage-certificates.example.com/confirm"
 
-    i_should_be_on "/"
+    i_should_be_on "/start"
 
     page.should have_content("How many do you need?")
   end
 
   context "given correct data" do
     before do
-      visit "http://pay-foreign-marriage-certificates.example.com/"
+      visit "http://www.pay-foreign-marriage-certificates.example.com/start"
 
       within(:css, "form") do
         choose "Certificate of custom law"
@@ -64,7 +64,7 @@ describe "paying for a certificate for marriage" do
         page.should have_selector("input[name='AMOUNT'][value='20500']")
         page.should have_selector("input[name='CURRENCY'][value='GBP']")
         page.should have_selector("input[name='LANGUAGE'][value='en_GB']")
-        page.should have_selector("input[name='ACCEPTURL'][value='http://pay-foreign-marriage-certificates.example.com/done']")
+        page.should have_selector("input[name='ACCEPTURL'][value='http://www.pay-foreign-marriage-certificates.example.com/done']")
         page.should have_selector("input[name='PARAMPLUS'][value='document_count=3&postage=yes']")
         page.should have_selector("input[name='TP'][value='http://static.dev.gov.uk/templates/barclays_epdq.html']")
 
@@ -74,7 +74,7 @@ describe "paying for a certificate for marriage" do
   end
 
   it "displays an error and renders the form given incorrect data" do
-    visit "http://pay-foreign-marriage-certificates.example.com/"
+    visit "http://www.pay-foreign-marriage-certificates.example.com/start"
 
     within(:css, "form") do
       select "3", :from => "transaction_document_count"
@@ -90,7 +90,7 @@ describe "paying for a certificate for marriage" do
   describe "visiting the done page" do
     context "given valid payment details" do
       before do
-        visit "http://pay-foreign-marriage-certificates.example.com/done?orderID=test&currency=GBP&amount=45&PM=CreditCard&ACCEPTANCE=test123&STATUS=5&CARDNO=XXXXXXXXXXXX1111&CN=MR+MICKEY+MOUSE&TRXDATE=03%2F11%2F13&PAYID=12345678&NCERROR=0&BRAND=VISA&SHASIGN=6ACE8B0C8E0B427137F6D7FF86272AA570255003&document_count=5&postage=yes"
+        visit "http://www.pay-foreign-marriage-certificates.example.com/done?orderID=test&currency=GBP&amount=45&PM=CreditCard&ACCEPTANCE=test123&STATUS=5&CARDNO=XXXXXXXXXXXX1111&CN=MR+MICKEY+MOUSE&TRXDATE=03%2F11%2F13&PAYID=12345678&NCERROR=0&BRAND=VISA&SHASIGN=6ACE8B0C8E0B427137F6D7FF86272AA570255003&document_count=5&postage=yes"
       end
 
       it "should display the done page content" do
@@ -112,7 +112,7 @@ describe "paying for a certificate for marriage" do
 
     context "given valid payment details and additional parameters" do
       before do
-        visit "http://pay-foreign-marriage-certificates.example.com/done?orderID=test&currency=GBP&amount=45&PM=CreditCard&ACCEPTANCE=test123&STATUS=5&CARDNO=XXXXXXXXXXXX1111&CN=MR+MICKEY+MOUSE&TRXDATE=03%2F11%2F13&PAYID=12345678&NCERROR=0&BRAND=VISA&SHASIGN=6ACE8B0C8E0B427137F6D7FF86272AA570255003&registration_count=1&document_count=4"
+        visit "http://www.pay-foreign-marriage-certificates.example.com/done?orderID=test&currency=GBP&amount=45&PM=CreditCard&ACCEPTANCE=test123&STATUS=5&CARDNO=XXXXXXXXXXXX1111&CN=MR+MICKEY+MOUSE&TRXDATE=03%2F11%2F13&PAYID=12345678&NCERROR=0&BRAND=VISA&SHASIGN=6ACE8B0C8E0B427137F6D7FF86272AA570255003&registration_count=1&document_count=4"
       end
 
       it "should display the number of documents ordered" do
@@ -122,7 +122,7 @@ describe "paying for a certificate for marriage" do
 
     context "invalid payment details" do
       it "should display the error page content" do
-        visit "http://pay-foreign-marriage-certificates.example.com/done?orderID=test&currency=GBP&amount=45&PM=CreditCard&ACCEPTANCE=test123&STATUS=5&CARDNO=XXXXXXXXXXXX1111&CN=MISS+MINNIE+MOUSE&SHASIGN=yarrrrr"
+        visit "http://www.pay-foreign-marriage-certificates.example.com/done?orderID=test&currency=GBP&amount=45&PM=CreditCard&ACCEPTANCE=test123&STATUS=5&CARDNO=XXXXXXXXXXXX1111&CN=MISS+MINNIE+MOUSE&SHASIGN=yarrrrr"
         within(:css, "header.page-header") do
           page.should have_content("Payment for certificates to get married abroad")
         end
@@ -131,7 +131,7 @@ describe "paying for a certificate for marriage" do
       end
 
       it "should display the error page with a missing SHASIGN" do
-        visit "http://pay-foreign-marriage-certificates.example.com/done?orderID=test&currency=GBP&amount=45&PM=CreditCard&ACCEPTANCE=test123&STATUS=5&CARDNO=XXXXXXXXXXXX1111&CN=MISS+MINNIE+MOUSE"
+        visit "http://www.pay-foreign-marriage-certificates.example.com/done?orderID=test&currency=GBP&amount=45&PM=CreditCard&ACCEPTANCE=test123&STATUS=5&CARDNO=XXXXXXXXXXXX1111&CN=MISS+MINNIE+MOUSE"
 
         within(:css, "header.page-header") do
           page.should have_content("Payment for certificates to get married abroad")

@@ -1,8 +1,8 @@
 FCOServices::Application.routes.draw do
   constraints(Transaction) do
-    get "/" => "epdq_transactions#start", :as => :transaction
+    get "/start" => "epdq_transactions#start", :format => false, :as => :transaction
     post "/confirm" => "epdq_transactions#confirm", :format => false, :as => :transaction_confirm
-    get "/confirm" => redirect("/"), :format => false
+    get "/confirm" => redirect("/start"), :format => false
     get "/done" => "epdq_transactions#done", :format => false, :as => :transaction_done
   end
 

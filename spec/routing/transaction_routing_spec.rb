@@ -3,10 +3,10 @@ require 'spec_helper'
 describe "Routing requests to transactions" do
 
   context "with a subdomain that matches a transaction" do
-    let(:domain) { "deposit-foreign-marriage.example.com" }
+    let(:domain) { "www.deposit-foreign-marriage.example.com" }
 
-    it "should route / to the start action" do
-      expect(:get => "http://#{domain}/").to route_to(
+    it "should route /start to the start action" do
+      expect(:get => "http://#{domain}/start").to route_to(
         :controller => "epdq_transactions",
         :action => "start"
       )
@@ -27,17 +27,29 @@ describe "Routing requests to transactions" do
     end
 
     it "should match with any length of domain" do
-      slug = "deposit-foreign-marriage"
-      expect(:get => "http://#{slug}.service.gov.uk/").to route_to(:controller => "epdq_transactions", :action => "start")
-      expect(:get => "http://#{slug}.service.alphagov.co.uk/").to route_to(:controller => "epdq_transactions", :action => "start")
-      expect(:get => "http://#{slug}.service.preview.alphagov.co.uk/").to route_to(:controller => "epdq_transactions", :action => "start")
-      expect(:get => "http://#{slug}.service.really.long.domain.preview.alphagov.co.uk/").to route_to(:controller => "epdq_transactions", :action => "start")
-      expect(:get => "http://#{slug}.dev/").to route_to(:controller => "epdq_transactions", :action => "start")
+      prefix = "www.deposit-foreign-marriage"
+      expect(:get => "http://#{prefix}.service.gov.uk/start").to route_to(:controller => "epdq_transactions", :action => "start")
+      expect(:get => "http://#{prefix}.service.alphagov.co.uk/start").to route_to(:controller => "epdq_transactions", :action => "start")
+      expect(:get => "http://#{prefix}.service.preview.alphagov.co.uk/start").to route_to(:controller => "epdq_transactions", :action => "start")
+      expect(:get => "http://#{prefix}.service.really.long.domain.preview.alphagov.co.uk/start").to route_to(:controller => "epdq_transactions", :action => "start")
+      expect(:get => "http://#{prefix}.dev/start").to route_to(:controller => "epdq_transactions", :action => "start")
+    end
+
+    it "should work with any prefix" do
+      suffix = "deposit-foreign-marriage.service.gov.uk"
+      expect(:get => "http://www.#{suffix}/start").to route_to(:controller => "epdq_transactions", :action => "start")
+      expect(:get => "http://www-origin.#{suffix}/start").to route_to(:controller => "epdq_transactions", :action => "start")
+      expect(:get => "http://www-preview.#{suffix}/start").to route_to(:controller => "epdq_transactions", :action => "start")
+      expect(:get => "http://foo.#{suffix}/start").to route_to(:controller => "epdq_transactions", :action => "start")
     end
   end
 
   context "with a subdomain that doesn't match a transaction" do
-    let(:domain) { "fooey.example.com" }
+    let(:domain) { "www.fooey.example.com" }
+
+    it "should not route /start" do
+      expect(:get => "http://#{domain}/start").not_to be_routable
+    end
 
     it "should not route /confirm" do
       expect(:get => "http://#{domain}/confirm").not_to be_routable

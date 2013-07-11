@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe "paying to deposit marriage and civil partnership documents" do
   it "renders the content and form" do
-    visit "http://deposit-foreign-marriage.example.com/"
+    visit "http://www.deposit-foreign-marriage.example.com/start"
 
     within(:css, "header.page-header") do
       page.should have_content("Deposit foreign marriage or civil partnership certificates")
@@ -24,7 +24,7 @@ describe "paying to deposit marriage and civil partnership documents" do
 
   context "given correct data" do
     before do
-      visit "http://deposit-foreign-marriage.example.com/"
+      visit "http://www.deposit-foreign-marriage.example.com/start"
 
       within(:css, "form") do
         select "1", :from => "transaction_document_count"
@@ -49,7 +49,7 @@ describe "paying to deposit marriage and civil partnership documents" do
         page.should have_selector("input[name='AMOUNT'][value='4500']")
         page.should have_selector("input[name='CURRENCY'][value='GBP']")
         page.should have_selector("input[name='LANGUAGE'][value='en_GB']")
-        page.should have_selector("input[name='ACCEPTURL'][value='http://deposit-foreign-marriage.example.com/done']")
+        page.should have_selector("input[name='ACCEPTURL'][value='http://www.deposit-foreign-marriage.example.com/done']")
 
         page.should have_button("Pay")
       end

@@ -33,7 +33,7 @@ class Transaction < OpenStruct
 
   # To support subdomain routing (see routes.rb)
   def self.matches?(request)
-    slug = request.subdomains(0).first
+    slug = request.subdomains(0)[1]
     transaction_list.has_key?(slug)
   end
 

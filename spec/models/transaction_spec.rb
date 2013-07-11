@@ -67,21 +67,21 @@ describe Transaction do
 
   describe "matches? method for subdomain routing" do
     it "should return true if the request domain matches a transaction slug" do
-      request = stub("Request", :subdomains => ['pay-for-gorilla-hire', 'service'])
+      request = stub("Request", :subdomains => ['www', 'pay-for-gorilla-hire', 'service'])
       expect(Transaction.matches?(request)).to be_true
     end
 
     it "should support variable subdomain lengths" do
       request = stub("Request")
-      request.stub(:subdomains).and_return([])
-      request.stub(:subdomains).with(0).and_return(['pay-for-gorilla-hire', 'service'])
-      request.stub(:subdomains).with(1).and_return(['pay-for-gorilla-hire'])
+      request.stub(:subdomains).and_return(['www'])
+      request.stub(:subdomains).with(0).and_return(['www', 'pay-for-gorilla-hire', 'service'])
+      request.stub(:subdomains).with(1).and_return(['www', 'pay-for-gorilla-hire'])
 
       expect(Transaction.matches?(request)).to be_true
     end
 
     it "should return false with a subdomain that doesn't match" do
-      request = stub("Request", :subdomains => ['pay-bear-tax', 'service'])
+      request = stub("Request", :subdomains => ['www', 'pay-bear-tax', 'service'])
       expect(Transaction.matches?(request)).to be_false
     end
 
