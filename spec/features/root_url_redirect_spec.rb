@@ -13,4 +13,10 @@ feature "redirecting the root url" do
     expect(response).to redirect_to("https://www.gov.uk/")
     expect(response.status).to eq(302)
   end
+
+  it "should have a robots.txt that disallows spidering" do
+    get "http://pay-legalisation-post.example.com/robots.txt"
+    expect(response.body).to match(%r{^User-Agent: \*$})
+    expect(response.body).to match(%r{^Disallow: /$})
+  end
 end
