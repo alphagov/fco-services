@@ -1,8 +1,12 @@
 FCOServices::Application.routes.draw do
-  get "/:slug" => "epdq_transactions#show"
-  get "/:slug/start" => "epdq_transactions#start", :as => :transaction
-  post "/:slug/confirm" => "epdq_transactions#confirm", :as => :transaction_confirm
-  get "/:slug/done" => "epdq_transactions#done", :as => :transaction_done
+  constraints(Transaction) do
+    get "/start" => "epdq_transactions#start", :format => false, :as => :transaction
+    post "/confirm" => "epdq_transactions#confirm", :format => false, :as => :transaction_confirm
+    get "/confirm" => redirect("/start"), :format => false
+    get "/done" => "epdq_transactions#done", :format => false, :as => :transaction_done
+    get "/" => "epdq_transactions#root_redirect"
+  end
 
-  root :to => "epdq_transactions#index"
+  root :to => redirect("https://www.gov.uk/", :status => 302)
+  get "/healthcheck" => Proc.new { [200, {}, ['OK']] }, :format => false
 end

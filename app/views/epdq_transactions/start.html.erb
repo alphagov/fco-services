@@ -11,7 +11,7 @@
   <div class="article-container group">
       <article role="article" class="group">
        <div class="inner">
-          <%= form_tag transaction_confirm_path(@transaction.slug) do %>
+          <%= form_tag transaction_confirm_path do %>
             <% if @errors.present? %>
               <% @errors.each do |key| %>
               <p class="error-message"><%= t "epdq.errors.#{key}" %></p>

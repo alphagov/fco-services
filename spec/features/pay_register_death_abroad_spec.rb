@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe "paying to register a death abroad" do
   it "renders the content and form" do
-    visit "/pay-register-death-abroad/start"
+    visit "http://www.pay-register-death-abroad.example.com/start"
 
     within(:css, "header.page-header") do
       page.should have_content("Payment to register a death abroad")
@@ -29,7 +29,7 @@ describe "paying to register a death abroad" do
 
   context "given correct data" do
     before do
-      visit "/pay-register-death-abroad/start"
+      visit "http://www.pay-register-death-abroad.example.com/start"
 
       within(:css, "form") do
         select "5", :from => "transaction_registration_count"
@@ -55,7 +55,7 @@ describe "paying to register a death abroad" do
         page.should have_selector("input[name='AMOUNT'][value='60000']")
         page.should have_selector("input[name='CURRENCY'][value='GBP']")
         page.should have_selector("input[name='LANGUAGE'][value='en_GB']")
-        page.should have_selector("input[name='ACCEPTURL'][value='http://www.dev.gov.uk/pay-register-death-abroad/done']")
+        page.should have_selector("input[name='ACCEPTURL'][value='http://www.pay-register-death-abroad.example.com/done']")
 
         page.should have_button("Pay")
       end
