@@ -57,7 +57,7 @@ private
       :language => "en_GB",
       :accepturl => transaction_done_url,
       :paramplus => paramplus_value,
-      :tp => "#{Plek.current.asset_root}/templates/barclays_epdq.html"
+      :tp => epdq_template_url
     )
   end
 
@@ -75,4 +75,7 @@ private
     "#{@transaction.slug}:#{step}"
   end
 
+  def epdq_template_url
+    "#{request.protocol}#{request.host_with_port}#{view_context.image_path('barclays_epdq.html')}"
+  end
 end
