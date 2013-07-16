@@ -66,7 +66,7 @@ describe "paying for a certificate for marriage" do
         page.should have_selector("input[name='LANGUAGE'][value='en_GB']")
         page.should have_selector("input[name='ACCEPTURL'][value='http://www.pay-foreign-marriage-certificates.example.com/done']")
         page.should have_selector("input[name='PARAMPLUS'][value='document_count=3&postage=yes']")
-        page.should have_selector("input[name='TP'][value='http://static.dev.gov.uk/templates/barclays_epdq.html']")
+        page.should have_selector("input[name='TP'][value='http://www.pay-foreign-marriage-certificates.example.com/assets/barclays_epdq.html']")
 
         page.should have_button("Pay")
       end
