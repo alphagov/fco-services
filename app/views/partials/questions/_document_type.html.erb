@@ -1,5 +1,5 @@
 <p><%= question_text %></p>
-<ul>
+<ul class="options-list">
   <% @transaction.document_types.each do |value,label| %>
     <li>
       <%= label_tag "transaction_document_type_#{value}" do %>
