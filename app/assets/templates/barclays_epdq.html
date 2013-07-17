@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- ePDQ static template
+-->
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<TITLE>Payment confirmation</TITLE>
+    <style type="text/css">
+	<!--
+	td.ncolh1 {background-color : #FFFFFF; color : #000000; font-family : Arial}
+	td.ncoltxtl {background-color : #FFFFFF; color : #000000; text-align : right; font-weight : bold; font-family : Arial}
+	td.ncoltxtl2 {background-color :#FFFFFF; color : #000000; text-align : right; font-weight : bold; font-family : Arial}
+	td.ncoltxtr {background-color : #FFFFFF; color : #000000; text-align : left; font-weight : bold; font-family : Arial}
+	td.ncoltxtc {background-color : #FFFFFF; color : #000000; text-align : center; font-weight : bold; font-family : Arial}
+	td.ncollogol {background-color : #FFFFFF; color : #000000; text-align : right; font-weight : bold; font-family : Arial}
+	td.ncollogor {background-color : #FFFFFF; color : #000000; text-align : left; font-weight : bold; font-family : Arial}
+	td.ncollogoc {background-color : #FFFFFF; color : #000000; text-align : center; font-weight : bold; font-family : Arial}
+	td.ncoltxtmessage {background-color : #FFFFFF; color : #000000; text-align : left; font-weight : bold; font-family : Arial}
+	td.ncolinput {background-color : #FFFFFF; color : #000000; font-family : Arial}
+	td.ncolline1 {background-color : #FFFFFF; color : #000000; font-family : Arial}
+	td.ncolline2 {background-color : #FFFFFF; color : #000000; font-family : Arial}
+	input.ncol {background-color : darkblack; color : #000000; font-family : Arial}
+	table.ncoltable1 { background-color: #FFFFFF;  color : #000000; border: 1px solid #000000; }
+	table.ncoltable2 { background-color: #FFFFFF;  color : #000000; border: 1px solid #000000; }
+	table.ncoltable3 { background-color: #FFFFFF;  color : #000000; border: 1px solid #000000; }
+	table.ncoltable1 td { background-color: #FFFFFF;  color : #000000; font-family : Arial;}
+	table.ncoltable2 td { background-color: #FFFFFF;  color : #000000; font-family : Arial;  }
+	table.ncoltable3 td { background-color: #FFFFFF;  color : #000000;  font-family : Arial;}
+	a {color: #000000; text-decoration: underline}
+	p {color: #000000; }
+			td {}
+.DDtxt {text-align: left;margin-left:2em;font-weight: normal;margin-top:0;}
+.DDlabel {text-align: left; margin-left:4em;font-weight: normal;margin-top:0;}
+.DDdata {font-weight: normal;margin-top:0;}
+.MKtxt {text-align: left;font-weight: bold; margin-left:2em;margin-top:0;}
+.MKlabel {text-align: left; margin-left:4em;font-weight: normal;font-style:italic;margin-top:0;}
+td.ncoltxtr p.MKlabel {margin-left:0;}
+.MKdata {font-weight: normal;margin-top:0;}
+.DDimp {font-weight: bold;margin-left:2em;text-align: left;margin-top:0;}
+.DDsection {font-weight: bold;margin-left:0em;text-align: left; margin-top:1em; margin-bottom: 0em;}
+	-->
+	</style>
+
+  <style type="text/css">
+  <!--
+table{
+ background-color:#fff;
+}
+table small{
+  font-size:20px;
+}
+
+/* Headings */
+table div,
+.ncoltable2 td b small,
+table div font strong,
+.ncoltable2 small small a,
+.ncoltable1 .ncoltxtl,
+.ncoltable2 td[colspan='2'],
+.ncoltable2 td[align='right'] {
+  text-align:left !important;
+}
+
+/* H1 */
+table div font strong{
+  font-size:34px !important;
+}
+table div font{
+  font-family: Arial !important;
+}
+
+table{
+  border:none !important;
+}
+
+
+/* Transaction details */
+.ncoltable1 td{
+  float: left;
+}
+.ncoltable1 td {
+  width: auto;
+}
+.ncoltable1 .ncoltxtl {
+  font-size:20px;
+  width: 16em !important;
+}
+.ncoltable1 .ncoltxtl small{
+  display: block;
+}
+
+/* Content */
+.ncoltable2{
+  font-size: 20px;
+  position: relative;
+  min-height: 17.5em;
+  padding-bottom: 1.5em;
+
+}
+.ncoltable2 td {
+  width: auto;
+}
+.ncoltable2 td[align='right'] {
+  width: 16em;
+  float: left;
+}
+.ncoltable2 td[colspan='2'] {
+  padding-left: 16em;
+}
+.ncoltable2 td input{
+  font-size: 20px;
+}
+/* Buttons */
+.ncoltable2 td input[name='JCB_brand'],
+.ncoltable2 td input[name='VISA_brand'],
+.ncoltable2 td input[name='Eurocard_brand'],
+.ncoltable2 td input[name='Maestro_brand'] {
+  display: block;
+  align: center;
+  left: 0;
+  font-size: 20px;
+  background-color: #5FC2C9;
+  color: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 3px 0 #000;
+  -moz-box-shadow: 0 3px 0 #000;
+  box-shadow: 0 3px 0 #000;
+  font-weight: 400;
+  padding:0.5em 1em;
+  overflow: visible;
+  height:2em;
+}
+/* Entry page styles */
+.ncoltable2 td b small,
+.ncoltable2 td small small span,
+.ncoltable2 td small small a,
+.ncoltable2 td input[name='JCB_brand'],
+.ncoltable2 td input[name='VISA_brand'],
+.ncoltable2 td input[name='Eurocard_brand'],
+.ncoltable2 td input[name='Maestro_brand'] {
+  position: absolute;
+  _position: relative;
+}
+.ncoltable2 td input[name='JCB_brand']:active,
+.ncoltable2 td input[name='VISA_brand']:active,
+.ncoltable2 td input[name='Eurocard_brand']:active,
+.ncoltable2 td input[name='Maestro_brand']:active {
+  box-shadow:none;
+  outline:none;
+}
+.ncoltable2 td input[name='JCB_brand']:focus,
+.ncoltable2 td input[name='VISA_brand']:focus,
+.ncoltable2 td input[name='Eurocard_brand']:focus,
+.ncoltable2 td input[name='Maestro_brand']:focus {
+  background-color:#28A197;
+  _color: #fff;
+}
+
+.ncoltable2 td input[name='JCB_brand']:hover,
+.ncoltable2 td input[name='VISA_brand']:hover,
+.ncoltable2 td input[name='Eurocard_brand']:hover,
+.ncoltable2 td input[name='Maestro_brand']:hover {
+  background-color: #3ABAA8;
+  color: #fff;
+}
+.ncoltable2 td b small {
+  font-weight: normal;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5em;
+}
+.ncoltable2 td small small span {
+  display: none;
+}
+
+.ncoltable2 td input[name='JCB_brand'] {
+  top: 2.25em;
+  left: 2em;
+  _top: auto;
+  _left: auto;
+}
+.ncoltable2 td input[name='VISA_brand'] {
+  top: 2.25em;
+  left: 9.5em;
+  _top: auto;
+  _left: auto;
+}
+.ncoltable2 td input[name='Eurocard_brand'] {
+  top: 2.25em;
+  left: 19em;
+  _top: auto;
+  _left: auto;
+}
+.ncoltable2 td input[name='Maestro_brand'] {
+  top: 2.25em;
+  left: 27em;
+  _top: auto;
+  _left: auto;
+}
+.ncoltable2 small small a {
+  left: 0;
+  bottom: 0.25em;
+  width: 100%;
+  font-size:12px;
+  top: 164px;
+  _top: auto;
+  _left: auto;
+}
+/* Payment page styles */
+.ncoltable2 small small a.midncol {
+  position: static;
+}
+  -->
+  </style>
+
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+
+$$$PAYMENT ZONE$$$
+
+
+
+</BODY>
+
+</HTML>
