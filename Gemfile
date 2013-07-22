@@ -6,14 +6,6 @@ gem 'unicorn', '4.3.1'
 
 gem 'epdq', :git => "https://github.com/alphagov/epdq.git", :branch => "gds_master"
 
-if ENV['SLIMMER_DEV']
-  gem 'slimmer', :path => '../slimmer'
-else
-  gem 'slimmer', '3.17.0'
-end
-
-gem 'plek', '1.3.1'
-
 gem 'exception_notification', "3.0.1"
 gem 'aws-ses', :require => 'aws/ses' # Needed by exception_notification
 
