@@ -12,7 +12,8 @@ gem 'aws-ses', :require => 'aws/ses' # Needed by exception_notification
 gem 'govuk_template', :path => "../govuk_template"
 
 group :assets do
-  gem 'govuk_frontend_toolkit', '0.10.0'
+  gem 'sass-rails', "3.2.6"
+  gem 'govuk_frontend_toolkit', '0.32.2'
 
   gem 'uglifier', '>= 1.0.3'
 end
