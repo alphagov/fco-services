@@ -1,4 +1,4 @@
-<% content_for :page_title, "#{yield :title} - GOV.UK" %>
+<% content_for :page_title, "#{@transaction.title} - GOV.UK" %>
 <% content_for :head do %>
   <!--[if gt IE 8]><!--><%= stylesheet_link_tag "application" %><!--<![endif]-->
   <!--[if IE 6]><%= stylesheet_link_tag "application-ie6" %><![endif]-->
@@ -7,7 +7,7 @@
 <% end %>
 <% content_for :body_classes, "mainstream" %>
 <% content_for :content do %>
-  <div id="wrapper" class="<%= yield :wrapper_classes %>" <%= data_journey %>>
+  <div id="wrapper" class="service" <%= data_journey %>>
     <%= yield %>
   </div>
 <% end %>
