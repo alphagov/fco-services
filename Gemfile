@@ -9,7 +9,11 @@ gem 'epdq', :git => "https://github.com/alphagov/epdq.git", :branch => "gds_mast
 gem 'exception_notification', "3.0.1"
 gem 'aws-ses', :require => 'aws/ses' # Needed by exception_notification
 
-gem 'govuk_template', :path => "../govuk_template"
+if ENV['GOVUK_TEMPLATE_DEV']
+  gem 'govuk_template', :path => "../govuk_template"
+else
+  gem 'govuk_template', '0.0.2'
+end
 
 group :assets do
   gem 'sass-rails', "3.2.6"
