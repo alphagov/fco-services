@@ -1,5 +1,5 @@
 <p><%= raw question_text %></p>
-<ul>
+<ul class="options-list">
   <% @transaction.postage_options.each do |value,option| %>
     <li>
       <%= label_tag "transaction_postage_option_#{value}" do %>
