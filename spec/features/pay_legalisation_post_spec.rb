@@ -9,7 +9,7 @@ describe "paying to get a document legalised by post" do
       page.should have_content("Pay to legalise documents by post")
     end
 
-    within(:css, "form") do
+    within(:css, "#content form") do
       page.should have_content("How many documents do you want legalised?")
 
       page.should have_content("Each document costs £30.")
@@ -30,7 +30,7 @@ describe "paying to get a document legalised by post" do
     before do
       visit "http://www.pay-legalisation-post.example.com/start"
 
-      within(:css, "form") do
+      within(:css, "#content form") do
         fill_in "transaction_document_count", :with => "1"
         choose "Tracked courier service to the rest of the world - £25"
       end
@@ -65,7 +65,7 @@ describe "paying to get a document legalised by post" do
 
     visit "http://www.pay-legalisation-post.example.com/start"
 
-    within(:css, "form") do
+    within(:css, "#content form") do
       fill_in "transaction_document_count", :with => "0"
       choose "Tracked courier service to the UK or British Forces Post Office, with insurance - £12"
     end
@@ -78,7 +78,7 @@ describe "paying to get a document legalised by post" do
   it "displays an error and renders the form given incorrect data" do
     visit "http://www.pay-legalisation-post.example.com/start"
 
-    within(:css, "form") do
+    within(:css, "#content form") do
       fill_in "transaction_document_count", :with => "3"
     end
 

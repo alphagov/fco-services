@@ -9,7 +9,7 @@ describe "paying for a certificate for marriage" do
       page.should have_content("Payment for certificates to get married abroad")
     end
 
-    within(:css, "form") do
+    within(:css, "#content form") do
       page.should have_content("Pay for documents you need from the Foreign & Commonwealth Office (FCO) to prove you’re allowed to get married abroad.")
       page.should have_unchecked_field("Certificate of no impediment")
       page.should have_unchecked_field("Nulla Osta")
@@ -40,7 +40,7 @@ describe "paying for a certificate for marriage" do
     before do
       visit "http://www.pay-foreign-marriage-certificates.example.com/start"
 
-      within(:css, "form") do
+      within(:css, "#content form") do
         choose "Certificate of custom law"
         select "3", :from => "transaction_document_count"
         select "Yes", :from => "transaction_postage"
@@ -76,7 +76,7 @@ describe "paying for a certificate for marriage" do
   it "displays an error and renders the form given incorrect data" do
     visit "http://www.pay-foreign-marriage-certificates.example.com/start"
 
-    within(:css, "form") do
+    within(:css, "#content form") do
       select "3", :from => "transaction_document_count"
       select "Yes", :from => "transaction_postage"
     end
