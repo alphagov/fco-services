@@ -12,7 +12,7 @@ gem 'aws-ses', :require => 'aws/ses' # Needed by exception_notification
 if ENV['GOVUK_TEMPLATE_DEV']
   gem 'govuk_template', :path => "../govuk_template"
 else
-  gem 'govuk_template', '0.0.2'
+  gem 'govuk_template', '0.0.3'
 end
 
 group :assets do
