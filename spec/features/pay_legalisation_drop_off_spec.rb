@@ -9,7 +9,7 @@ describe "paying to get a document legalised using the drop-off service" do
       page.should have_content("Pay to legalise documents using the drop-off service")
     end
 
-    within(:css, "form") do
+    within(:css, "#content form") do
       page.should have_content("How many documents do you want legalised?")
 
       page.should have_content("Each document costs £75.")
@@ -27,7 +27,7 @@ describe "paying to get a document legalised using the drop-off service" do
     before do
       visit "http://www.pay-legalisation-drop-off.example.com/start"
 
-      within(:css, "form") do
+      within(:css, "#content form") do
         fill_in "transaction_document_count", :with => "5"
       end
 

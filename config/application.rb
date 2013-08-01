@@ -64,5 +64,11 @@ module FCOServices
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.assets.precompile += %w(
+      application-ie8.css
+      application-ie7.css
+      application-ie6.css
+    )
   end
 end

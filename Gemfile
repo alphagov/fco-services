@@ -6,19 +6,18 @@ gem 'unicorn', '4.3.1'
 
 gem 'epdq', :git => "https://github.com/alphagov/epdq.git", :branch => "gds_master"
 
-if ENV['SLIMMER_DEV']
-  gem 'slimmer', :path => '../slimmer'
-else
-  gem 'slimmer', '3.17.0'
-end
-
-gem 'plek', '1.3.1'
-
 gem 'exception_notification', "3.0.1"
 gem 'aws-ses', :require => 'aws/ses' # Needed by exception_notification
 
+if ENV['GOVUK_TEMPLATE_DEV']
+  gem 'govuk_template', :path => "../govuk_template"
+else
+  gem 'govuk_template', '0.0.3'
+end
+
 group :assets do
-  gem 'govuk_frontend_toolkit', '0.10.0'
+  gem 'sass-rails', "3.2.6"
+  gem 'govuk_frontend_toolkit', '0.32.2'
 
   gem 'uglifier', '>= 1.0.3'
 end

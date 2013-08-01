@@ -4,7 +4,6 @@
     <div>
       <h1><span>Service</span> <%= @transaction.title %></h1>
     </div>
-    <a href="#related" class="skip-to-related">Not what you're looking for? ↓</a>
   </header>
   <div class="article-container group">
       <article role="article" class="group">
@@ -27,8 +26,3 @@
   </div>
 
 </section>
-
-<div id="related-items"></div>
-
-<% content_for :wrapper_classes do %>service<% end %>
-<% content_for :title do %><%= @transaction.title %><% end %>
