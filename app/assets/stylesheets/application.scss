@@ -22,3 +22,18 @@ article ul.options-list {
   padding: 0;
   margin: 1em 0;
 }
+
+
+section.done {
+  border-top: 1px solid $grey-2;
+  margin: 3em 0;
+
+  p {
+    padding: 0.5em 0;
+
+    .button {
+      font-weight: 700;
+      font-size: 24px;
+    }
+  }
+}

@@ -69,6 +69,7 @@ module FCOServices
       application-ie8.css
       application-ie7.css
       application-ie6.css
+      print.css
     )
   end
 end
