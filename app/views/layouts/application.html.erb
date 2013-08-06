@@ -5,6 +5,7 @@
   <!--[if IE 6]><%= stylesheet_link_tag "application-ie6" %><![endif]-->
   <!--[if IE 7]><%= stylesheet_link_tag "application-ie7" %><![endif]-->
   <!--[if IE 8]><%= stylesheet_link_tag "application-ie8" %><![endif]-->
+  <%= stylesheet_link_tag "print", :media => "print" %>
 <% end %>
 <% content_for :body_classes, "mainstream" %>
 <% content_for :content do %>
