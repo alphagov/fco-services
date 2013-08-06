@@ -6,11 +6,19 @@
     </div>
   </header>
   <div class="article-container group">
-      <article role="article" class="group">
-       <div class="inner">
-         <%= render "partials/transactions/#{@transaction.slug}/done" %>
-       </div>
-     </article>
+    <article role="article" class="group">
+      <div class="inner">
+        <%= render "partials/transactions/#{@transaction.slug}/done" %>
+
+        <section class="done">
+          <h2>Help improve GOV.UK by telling us what you thought of this service</h2>
+
+          <p>
+            <a href="https://www.gov.uk/done/<%= @transaction.slug %>" class="button" rel="external">5 minute survey</a>
+          </p>
+        </section>
+      </div>
+    </article>
   </div>
 
 </section>

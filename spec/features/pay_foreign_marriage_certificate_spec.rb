@@ -108,6 +108,12 @@ describe "paying for a certificate for marriage" do
       it "should display the number of documents ordered" do
         page.should have_content("You have paid for 5 certificates plus postage.")
       end
+
+      it "should link to the done page on GOV.UK" do
+        within ".done" do
+          page.should have_link("5 minute survey", :href => "https://www.gov.uk/done/pay-foreign-marriage-certificates")
+        end
+      end
     end
 
     context "given valid payment details and additional parameters" do
