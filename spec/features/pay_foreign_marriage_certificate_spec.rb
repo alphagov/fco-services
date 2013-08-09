@@ -111,7 +111,7 @@ describe "paying for a certificate for marriage" do
 
       it "should link to the done page on GOV.UK" do
         within ".done" do
-          page.should have_link("5 minute survey", :href => "https://www.gov.uk/done/pay-foreign-marriage-certificates")
+          page.should have_link("Finished", :href => "https://www.gov.uk/done/pay-foreign-marriage-certificates")
         end
       end
     end
