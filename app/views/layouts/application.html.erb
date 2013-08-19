@@ -6,6 +6,22 @@
   <!--[if IE 7]><%= stylesheet_link_tag "application-ie7" %><![endif]-->
   <!--[if IE 8]><%= stylesheet_link_tag "application-ie8" %><![endif]-->
   <%= stylesheet_link_tag "print", :media => "print" %>
+  <script type="text/javascript">
+  //<![CDATA[
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43115970-1']);
+    _gaq.push(['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+
+  //]]>
+  </script>
 <% end %>
 <% content_for :body_classes, "mainstream" %>
 <% content_for :content do %>
