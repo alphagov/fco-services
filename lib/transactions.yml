@@ -11,7 +11,7 @@ pay-foreign-marriage-certificates:
 deposit-foreign-marriage:
   title: Deposit foreign marriage or civil partnership certificates
   document_cost: 35
-  postage_cost: 10
+  postage_cost: 5
   registration: false
   account: birth-death-marriage
   document_type: certificate

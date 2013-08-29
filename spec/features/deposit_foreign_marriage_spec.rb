@@ -15,7 +15,7 @@ describe "paying to deposit marriage and civil partnership documents" do
       page.should have_content("Each one costs £35.")
       page.should have_select("transaction_document_count", :options => ["1","2","3","4","5","6","7","8","9"])
 
-      page.should have_content("Do you want to pay the £10 postage fee to have your documents returned?")
+      page.should have_content("Do you want to pay the £5 postage fee to have your documents returned?")
       page.should have_select("transaction_postage", :options => ["Yes", "No"])
 
       page.should have_button("Calculate total")
@@ -35,7 +35,7 @@ describe "paying to deposit marriage and civil partnership documents" do
     end
 
     it "calculates a total" do
-      page.should have_content("The cost to deposit 1 certificate plus postage is £45")
+      page.should have_content("The cost to deposit 1 certificate plus postage is £40")
     end
 
     it "generates an EPDQ form" do
@@ -46,7 +46,7 @@ describe "paying to deposit marriage and civil partnership documents" do
         page.should have_selector("input[name='PSPID']")
         page.should have_selector("input[name='SHASIGN']")
 
-        page.should have_selector("input[name='AMOUNT'][value='4500']")
+        page.should have_selector("input[name='AMOUNT'][value='4000']")
         page.should have_selector("input[name='CURRENCY'][value='GBP']")
         page.should have_selector("input[name='LANGUAGE'][value='en_GB']")
         page.should have_selector("input[name='ACCEPTURL'][value='http://www.deposit-foreign-marriage.example.com/done']")
