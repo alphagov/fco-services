@@ -16,6 +16,8 @@
 @import "text";
 @import "core";
 
+/* Styles specific to FCO services pages */
+
 /* Prevent bullets appearing in lists of radio-buttons */
 article ul.options-list {
   list-style: none;
@@ -35,5 +37,11 @@ section.done {
       font-weight: 700;
       font-size: 24px;
     }
+  }
+}
+
+html.error {
+  header.page-header div {
+    margin-top: 54px;
   }
 }
