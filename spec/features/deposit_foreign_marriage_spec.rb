@@ -10,7 +10,7 @@ describe "paying to deposit marriage and civil partnership documents" do
     end
 
     within(:css, "#content form") do
-      page.should have_content("Deposit your marriage or civil partnership certificate at the General Register Office (GRO) for safe-keeping if you got married aboard and you’re resident in the UK.")
+      page.should have_content("Deposit your marriage or civil partnership certificate at the General Register Office (GRO) for safe-keeping if you got married abroad and you’re resident in the UK.")
 
       page.should have_content("Each one costs £35.")
       page.should have_select("transaction_document_count", :options => ["1","2","3","4","5","6","7","8","9"])
