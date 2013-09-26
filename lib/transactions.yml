@@ -6,7 +6,6 @@ pay-foreign-marriage-certificates:
   document_types:
     certificate-of-no-impediment: certificate of no impediment
     nulla-osta: Nulla Osta
-    certificate-of-custom-law: certificate of custom law
   account: birth-death-marriage
 deposit-foreign-marriage:
   title: Deposit foreign marriage or civil partnership certificates

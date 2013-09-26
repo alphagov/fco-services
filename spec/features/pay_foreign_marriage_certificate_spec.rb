@@ -13,7 +13,6 @@ describe "paying for a certificate for marriage" do
       page.should have_content("Pay for documents you need from the Foreign & Commonwealth Office (FCO) to prove you’re allowed to get married abroad.")
       page.should have_unchecked_field("Certificate of no impediment")
       page.should have_unchecked_field("Nulla Osta")
-      page.should have_unchecked_field("Certificate of custom law")
 
       page.should have_content("Each certificate costs £65.")
       page.should have_select("transaction_document_count", :options => ["1","2","3","4","5","6","7","8","9"])
@@ -41,7 +40,7 @@ describe "paying for a certificate for marriage" do
       visit "http://www.pay-foreign-marriage-certificates.example.com/start"
 
       within(:css, "#content form") do
-        choose "Certificate of custom law"
+        choose "Certificate of no impediment"
         select "3", :from => "transaction_document_count"
         select "Yes", :from => "transaction_postage"
       end
@@ -50,7 +49,7 @@ describe "paying for a certificate for marriage" do
     end
 
     it "calculates a total" do
-      page.should have_content("The cost of 3 certificates of custom law plus postage is £205")
+      page.should have_content("The cost of 3 certificates of no impediment plus postage is £205")
     end
 
     it "generates an EPDQ form" do
