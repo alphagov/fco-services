@@ -15,3 +15,10 @@
 /tmp
 
 /coverage
+
+#Ignore compiled assets
+/public/assets
+
+#Ignore warbled war
+fco-services.war
+
