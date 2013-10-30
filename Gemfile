@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
 source 'https://BnrJb6FZyzspBboNJzYZ@gem.fury.io/govuk/'
 
-ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.6'
+ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.4'
 
 gem 'rails', '3.2.16'
 gem 'puma'
+gem 'warbler'
+gem 'jruby-jars', '1.7.4'
 
 gem 'epdq', :git => "https://github.com/alphagov/epdq.git", :branch => "gds_master"
 
