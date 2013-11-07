@@ -18,7 +18,6 @@ describe "paying to get a document legalised by post" do
       page.should have_content("How would you like your documents sent back to you?")
       page.should have_unchecked_field("Prepaid envelope that you provide (UK only) - £0")
       page.should have_unchecked_field("Tracked courier service to the UK or British Forces Post Office - £6")
-      page.should have_unchecked_field("Tracked courier service to the UK or British Forces Post Office, with insurance - £12")
       page.should have_unchecked_field("Tracked courier service to Europe (excluding Russia, Turkey, Bosnia, Croatia, Albania, Belarus, Macedonia, Moldova, Montenegro, Ukraine) - £14.50")
       page.should have_unchecked_field("Tracked courier service to the rest of the world - £25")
 
@@ -67,12 +66,12 @@ describe "paying to get a document legalised by post" do
 
     within(:css, "#content form") do
       fill_in "transaction_document_count", :with => "0"
-      choose "Tracked courier service to the UK or British Forces Post Office, with insurance - £12"
+      choose "Tracked courier service to the UK or British Forces Post Office - £6"
     end
 
     click_on "Calculate total"
 
-    page.should have_content("It costs £12 for 0 documents plus Tracked courier service to the UK or British Forces Post Office, with insurance")
+    page.should have_content("It costs £6 for 0 documents plus Tracked courier service to the UK or British Forces Post Office")
   end
 
   it "displays an error and renders the form given incorrect data" do

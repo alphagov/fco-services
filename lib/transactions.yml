@@ -41,9 +41,6 @@ pay-legalisation-post:
     uk:
       label: Tracked courier service to the UK or British Forces Post Office
       cost: 6
-    uk-with-insurance:
-      label: Tracked courier service to the UK or British Forces Post Office, with insurance
-      cost: 12
     europe:
       label: Tracked courier service to Europe (excluding Russia, Turkey, Bosnia, Croatia, Albania, Belarus, Macedonia, Moldova, Montenegro, Ukraine)
       cost: 14.50
