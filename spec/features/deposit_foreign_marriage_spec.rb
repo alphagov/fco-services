@@ -12,6 +12,8 @@ describe "paying to deposit marriage and civil partnership documents" do
     within(:css, "#content form") do
       page.should have_content("Deposit your marriage or civil partnership certificate at the General Register Office (GRO) for safe-keeping if you got married abroad and you’re resident in the UK.")
 
+      page.should have_content("From 1 January 2014 this service is no longer available. Any applications submitted after this date will be cancelled and any payment refunded.")
+
       page.should have_content("Each one costs £35.")
       page.should have_select("transaction_document_count", :options => ["1","2","3","4","5","6","7","8","9"])
 
@@ -36,6 +38,7 @@ describe "paying to deposit marriage and civil partnership documents" do
 
     it "calculates a total" do
       page.should have_content("The cost to deposit 1 certificate plus postage is £40")
+      page.should have_content("From 1 January 2014 this service is no longer available. Any applications submitted after this date will be cancelled and any payment refunded.")
     end
 
     it "generates an EPDQ form" do
