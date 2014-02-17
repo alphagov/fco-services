@@ -9,7 +9,7 @@ gem 'epdq', :git => "https://github.com/alphagov/epdq.git", :branch => "gds_mast
 gem 'exception_notification', "3.0.1"
 gem 'aws-ses', :require => 'aws/ses' # Needed by exception_notification
 
-gem 'logstasher', '0.4.1'
+gem 'logstasher', '0.4.8'
 
 if ENV['GOVUK_TEMPLATE_DEV']
   gem 'govuk_template', :path => "../govuk_template"
